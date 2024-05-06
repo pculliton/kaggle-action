@@ -34,12 +34,14 @@ inputs:
   enable_internet:
     description: Whether or not the kernel should be able to access the internet
     default: enable
-  # dataset_sources:
-  #   description: A list of dataset sources
-  # competition_sources:
-  #   description: A list of competition sources
-  # kernel_sources:
-  #   description: A list of kernel sources
+  dataset_sources:
+    description: A list of dataset sources
+  competition_sources:
+    description: A list of competition sources
+  kernel_sources:
+    description: A list of kernel sources
+  model_sources:
+    description: A list of model sources, format "username/model-slug/framework/variation-slug/version-number"
 
 outputs:
   automatic_releases_tag:
@@ -90,6 +92,10 @@ runs:
         $metadata['kernel_type'] = '${{ inputs.kernel_type }}';
         $metadata['enable_gpu'] = '${{ inputs.enable_gpu }}' -eq 'enable';
         $metadata['enable_internet'] = '${{ inputs.enable_internet }}' -eq 'enable';
+        $metadata["model_sources"] = '${{ inputs.model_sources }}';
+        $metadata["dataset_sources"] = '${{ inputs.model_sources }}';
+        $metadata["competition_sources"] = '${{ inputs.model_sources }}';
+        $metadata["kernel_sources"] = '${{ inputs.model_sources }}';
 
         ConvertTo-Json -InputObject $metadata | Set-Content -Path $jsonPath | Out-Null;
 
