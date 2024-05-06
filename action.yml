@@ -93,9 +93,9 @@ runs:
         $metadata['enable_gpu'] = '${{ inputs.enable_gpu }}' -eq 'enable';
         $metadata['enable_internet'] = '${{ inputs.enable_internet }}' -eq 'enable';
         $metadata["model_sources"] = '${{ inputs.model_sources }}';
-        $metadata["dataset_sources"] = '${{ inputs.model_sources }}';
-        $metadata["competition_sources"] = '${{ inputs.model_sources }}';
-        $metadata["kernel_sources"] = '${{ inputs.model_sources }}';
+        $metadata["dataset_sources"] = '${{ inputs.dataset_sources }}';
+        $metadata["competition_sources"] = '${{ inputs.competition_sources }}';
+        $metadata["kernel_sources"] = '${{ inputs.kernel_sources }}';
 
         ConvertTo-Json -InputObject $metadata | Set-Content -Path $jsonPath | Out-Null;
 
