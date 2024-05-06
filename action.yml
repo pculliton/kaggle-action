@@ -82,7 +82,6 @@ runs:
         kaggle kernels init -p $actionPath;
 
     - name: Process metadata json
-      shell: bash
       run: |
         cat >> ${{github.action_path}}/kernel-metadata.json << EOF
         {'id': '${{ inputs.username }}/${{inputs.title}}',
