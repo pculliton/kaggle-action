@@ -98,7 +98,7 @@ runs:
          'competition_sources': [${{ inputs.competition_sources }}],
          'kernel_sources': [${{ inputs.kernel_sources }}],
          'model_sources': [${{ inputs.model_sources }}]}
-         EOF
+        EOF
 
     - name: Push kernel to Kaggle
       shell: pwsh
