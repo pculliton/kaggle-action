@@ -81,24 +81,27 @@ runs:
         # kaggle init
         kaggle kernels init -p $actionPath;
 
-        # process metadata json
-        [String]$jsonPath = [System.IO.Path]::Combine($actionPath, 'kernel-metadata.json');
-        [Hashtable]$metadata = Get-Content -Path $jsonPath -Raw | ConvertFrom-Json -AsHashtable;
-        # $metadata[''] = '$#{{ inputs. }}';
-        $metadata['id'] = $metadata['id'].Split('/')[0] + '/' + '${{ inputs.title }}';
-        $metadata['title'] = '${{ inputs.title }}';
-        $metadata['code_file'] = '${{ github.workspace }}' + '/' + '${{ inputs.code_file }}';
-        $metadata['language'] = '${{ inputs.language }}';
-        $metadata['kernel_type'] = '${{ inputs.kernel_type }}';
-        $metadata['enable_gpu'] = '${{ inputs.enable_gpu }}' -eq 'enable';
-        $metadata['enable_internet'] = '${{ inputs.enable_internet }}' -eq 'enable';
-        $metadata["model_sources"] = @('${{ inputs.model_sources }}');
-        $metadata["dataset_sources"] = @('${{ inputs.dataset_sources }}');
-        $metadata["competition_sources"] = @('${{ inputs.competition_sources }}');
-        $metadata["kernel_sources"] = @('${{ inputs.kernel_sources }}');
+    - name: Process metadata json
+      shell: bash
+      run: |
+        cat >> runner.py << EOF
+        {'id': '${{ inputs.username }}/${{inputs.title}}',
+         'title': '{{inputs.title}}',
+         'code_file': '${{ github.workspace }}/${{ inputs.code_file }}',
+         'language': '${{ inputs.language }}',
+         'kernel_type': '${{ inputs.kernel_type }}',
+         'is_private': 'true',
+         'enable_gpu': '${{ inputs.enable_gpu }}',
+         'enable_tpu': 'false',
+         'enable_internet': '${{ inputs.enable_internet }}',
+         'dataset_sources': [${{ inputs.dataset_sources }}],
+         'competition_sources': [${{ inputs.competition_sources }}],
+         'kernel_sources': [${{ inputs.kernel_sources }}],
+         'model_sources': [${{ inputs.model_sources }}]}
 
-        ConvertTo-Json -InputObject $metadata | Set-Content -Path $jsonPath | Out-Null;
-
+    - name: Push kernel to Kaggle
+      shell: pwsh
+      run: |
         #kaggle push
         kaggle kernels push;
 
