@@ -1,5 +1,5 @@
 name: kaggle Action
-author: Rowe Wilson Frederisk Holme
+author: Rowe Wilson Frederisk Holme, forked and modified by Phillip Culliton
 description: Use kaggle to implement simple CI, which supports GPU.
 
 inputs:
