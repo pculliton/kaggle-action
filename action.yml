@@ -84,7 +84,7 @@ runs:
     - name: Process metadata json
       shell: bash
       run: |
-        cat >> runner.py << EOF
+        cat >> ${{github.action_path}}/kernel-metadata.json << EOF
         {'id': '${{ inputs.username }}/${{inputs.title}}',
          'title': '{{inputs.title}}',
          'code_file': '${{ github.workspace }}/${{ inputs.code_file }}',
