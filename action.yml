@@ -94,10 +94,7 @@ runs:
          "enable_gpu": "${{ inputs.enable_gpu }}",
          "enable_tpu": "false",
          "enable_internet": "${{ inputs.enable_internet }}",
-         "dataset_sources": [${{ inputs.dataset_sources }}],
-         "competition_sources": [${{ inputs.competition_sources }}],
-         "kernel_sources": [${{ inputs.kernel_sources }}],
-         "model_sources": [${{ inputs.model_sources }}]}
+         "model_sources": ["${{ inputs.model_sources }}"]}
         EOF
 
     - name: Push kernel to Kaggle
