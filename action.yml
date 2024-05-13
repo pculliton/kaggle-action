@@ -106,6 +106,8 @@ runs:
       run: |
         cp ${{ github.workspace }}/${{ inputs.code_file }} ${{ github.action_path }}
         ls ${{ github.action_path }}
+        cat ${{ github.workspace }}/${{ inputs.code_file }}
+        cat ${{github.action_path}}/kernel-metadata.json
 
     - name: Push kernel to Kaggle
       shell: pwsh
