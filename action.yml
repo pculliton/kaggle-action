@@ -103,7 +103,9 @@ runs:
 
     - name: Copy code_file to final location
       shell: bash
-      run: cp ${{ github.workspace }}/${{ inputs.code_file }} ${{ github.action_path }}
+      run: |
+        cp ${{ github.workspace }}/${{ inputs.code_file }} ${{ github.action_path }}
+        ls ${{ github.action_path }}
 
     - name: Push kernel to Kaggle
       shell: pwsh
