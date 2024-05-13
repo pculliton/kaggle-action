@@ -97,7 +97,7 @@ runs:
          "is_private": "true",
          "enable_gpu": "${{ inputs.enable_gpu }}",
          "enable_tpu": "false",
-         "enable_internet": "${{ inputs.enable_internet }}",
+         "enable_internet": "true",
          "model_sources": ["${{ inputs.model_sources }}"]}
         EOF
 
