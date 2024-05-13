@@ -86,7 +86,7 @@ runs:
       run: |
         cat > ${{github.action_path}}/kernel-metadata.json << EOF
         {'id': '${{ inputs.username }}/${{inputs.title}}',
-         'title': '{{inputs.title}}',
+         'title': '{{ inputs.title }}',
          'code_file': '${{ github.workspace }}/${{ inputs.code_file }}',
          'language': '${{ inputs.language }}',
          'kernel_type': '${{ inputs.kernel_type }}',
@@ -104,7 +104,7 @@ runs:
       shell: pwsh
       run: |
         #kaggle push
-        kaggle kernels push;
+        kaggle kernels push -p ${{ github.action_path }};
 
     - name: Check status
       shell: pwsh
