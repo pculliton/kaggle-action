@@ -91,7 +91,7 @@ runs:
         cat > ${{github.action_path}}/kernel-metadata.json << EOF
         {"id": "${{ inputs.username }}/${{inputs.title}}",
          "title": "${{ inputs.title }}",
-         "code_file": "${{ github.workspace }}/${{ inputs.code_file }}",
+         "code_file": "${{ inputs.code_file }}",
          "language": "${{ inputs.language }}",
          "kernel_type": "${{ inputs.kernel_type }}",
          "is_private": "true",
