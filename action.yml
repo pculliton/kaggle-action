@@ -81,10 +81,6 @@ runs:
         # kaggle init
         kaggle kernels init -p $actionPath;
 
-    - name: Ensure code file is in expected location
-      shell: bash
-      run: ls ${{ github.workspace }}/*
-
     - name: Process metadata json
       shell: bash
       run: |
@@ -106,9 +102,6 @@ runs:
       shell: bash
       run: |
         cp ${{ github.workspace }}/${{ inputs.code_file }} ${{ github.action_path }}
-        ls ${{ github.action_path }}
-        cat ${{ github.workspace }}/${{ inputs.code_file }}
-        cat ${{github.action_path}}/kernel-metadata.json
 
     - name: Push kernel to Kaggle
       shell: pwsh
