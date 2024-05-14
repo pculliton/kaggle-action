@@ -149,7 +149,7 @@ runs:
         catch [System.Management.Automation.ApplicationFailedException], [OperationCanceledException]  {
           # write log
           kaggle kernels output -w -o $kernelName;
-          [String]$fullMessage = (Get-Content -Path (${{ inputs.title }} + '.log') -Raw | ConvertFrom-Json -AsHashtable | ForEach-Object -Process { $_['data'] }) -join '';
+          [String]$fullMessage = (Get-Content -Path ('./${{ inputs.title }}.log') -Raw | ConvertFrom-Json -AsHashtable | ForEach-Object -Process { $_['data'] }) -join '';
           Write-Host -Object @"
         ::group::Full log
         $fullMessage
