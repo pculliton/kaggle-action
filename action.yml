@@ -121,7 +121,7 @@ runs:
       run: |
         # location
         Set-Location -Path '${{ github.action_path }}' | Out-Null;
-        [String]$kernelName = '${{ inputs.title }}';
+        [String]$kernelName = '${{ inputs.username }}/${{ inputs.title }}';
 
         # check status
         try {
