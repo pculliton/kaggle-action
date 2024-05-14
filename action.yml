@@ -98,7 +98,7 @@ runs:
          "enable_gpu": "${{ inputs.enable_gpu }}",
          "enable_tpu": "false",
          "enable_internet": "true",
-         "dataset_sources": ["${{ inputs.dataset_sources }}"]},
+         "dataset_sources": ["${{ inputs.dataset_sources }}"],
          "model_sources": ["${{ inputs.model_sources }}"]}
         EOF
 
